@@ -349,3 +349,99 @@ html[data-theme="openseo-dark"] {
   --trend-tooltip-border: oklch(40% 0.01 255 / 0.65);
   --trend-tooltip-shadow: oklch(0% 0 0 / 0.35);
 }
+
+
+/* Sutra Search OS — Midnight & Sea Glass brand overrides.
+   Preserve existing OpenSEO theme IDs and semantic score badges for upstream compatibility. */
+:root {
+  --sutra-midnight: #101f33;
+  --sutra-teal: #0e7c86;
+  --sutra-aquamarine: #2dd4bf;
+  --sutra-cool-white: #f7f9fc;
+  --sutra-ink: #182c3d;
+  --sutra-slate: #4d6374;
+  --sutra-silver: #b7c8d2;
+  --sutra-border: #dee7ee;
+  --sutra-ai-violet: #6d61d8;
+}
+:root:not([data-theme="openseo-dark"]),
+[data-theme="openseo"] {
+  color-scheme: light;
+  --background: #f7f9fc;
+  --foreground: #182c3d;
+  --card: #ffffff;
+  --card-foreground: #182c3d;
+  --popover: #ffffff;
+  --popover-foreground: #182c3d;
+  --primary: #0e7c86;
+  --primary-foreground: #ffffff;
+  --secondary: #eaf3f5;
+  --secondary-foreground: #182c3d;
+  --muted: #eff3f7;
+  --muted-foreground: #4d6374;
+  --accent: #e3f2f2;
+  --accent-foreground: #075e65;
+  --destructive: #c33245;
+  --success: #18734b;
+  --success-foreground: #ffffff;
+  --warning: #eac779;
+  --warning-foreground: #413012;
+  --info: #296db0;
+  --info-foreground: #ffffff;
+  --border: #dee7ee;
+  --input: #b7c8d2;
+  --ring: #0e7c86;
+  --chart-1: #0e7c86;
+  --chart-2: #6d61d8;
+  --chart-3: #2a78b3;
+  --chart-4: #c27b36;
+  --chart-5: #cc577c;
+  --sidebar: #101f33;
+  --sidebar-foreground: #e8f2f5;
+  --sidebar-primary: #2dd4bf;
+  --sidebar-primary-foreground: #101f33;
+  --sidebar-accent: #254357;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #344559;
+  --sidebar-ring: #2dd4bf;
+}
+[data-theme="openseo-dark"] {
+  color-scheme: dark;
+  --background: #0d1927;
+  --foreground: #e8f2f5;
+  --card: #15283a;
+  --card-foreground: #e8f2f5;
+  --popover: #15283a;
+  --popover-foreground: #e8f2f5;
+  --primary: #2dd4bf;
+  --primary-foreground: #101f33;
+  --secondary: #20384b;
+  --secondary-foreground: #e8f2f5;
+  --muted: #1b3245;
+  --muted-foreground: #b7c8d2;
+  --accent: #254357;
+  --accent-foreground: #f7f9fc;
+  --destructive: #f07580;
+  --success: #54cda0;
+  --success-foreground: #101f33;
+  --warning: #eac779;
+  --warning-foreground: #101f33;
+  --info: #81b5f6;
+  --info-foreground: #101f33;
+  --border: #2b4356;
+  --input: #416078;
+  --ring: #2dd4bf;
+  --chart-1: #2dd4bf;
+  --chart-2: #aea4fb;
+  --chart-3: #6db8ed;
+  --chart-4: #f1b260;
+  --chart-5: #ea7fa4;
+  --sidebar: #0a1624;
+  --sidebar-foreground: #e8f2f5;
+  --sidebar-primary: #2dd4bf;
+  --sidebar-primary-foreground: #101f33;
+  --sidebar-accent: #254357;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #344559;
+  --sidebar-ring: #2dd4bf;
+}
