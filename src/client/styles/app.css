@@ -350,7 +350,6 @@ html[data-theme="openseo-dark"] {
   --trend-tooltip-shadow: oklch(0% 0 0 / 0.35);
 }
 
-
 /* Sutra Search OS — Midnight & Sea Glass brand overrides.
    Preserve existing OpenSEO theme IDs and semantic score badges for upstream compatibility. */
 :root {

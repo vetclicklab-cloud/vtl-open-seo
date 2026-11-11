@@ -10,16 +10,16 @@
 
 ## Palette
 
-| Role | Hex |
-| --- | --- |
-| Midnight Navy | `#101F33` |
-| Ocean Teal | `#0E7C86` |
-| Aquamarine | `#2DD4BF` |
-| Cool White | `#F7F9FC` |
-| Deep Ink | `#182C3D` |
-| Slate | `#4D6374` |
-| Silver | `#B7C8D2` |
-| Soft Border | `#DEE7EE` |
+| Role               | Hex       |
+| ------------------ | --------- |
+| Midnight Navy      | `#101F33` |
+| Ocean Teal         | `#0E7C86` |
+| Aquamarine         | `#2DD4BF` |
+| Cool White         | `#F7F9FC` |
+| Deep Ink           | `#182C3D` |
+| Slate              | `#4D6374` |
+| Silver             | `#B7C8D2` |
+| Soft Border        | `#DEE7EE` |
 | Optional AI Violet | `#6D61D8` |
 
 ## Implementation boundaries
