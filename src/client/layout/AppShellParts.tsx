@@ -43,7 +43,7 @@ function SeoApiStatusBanners({
             </>
           ) : (
             <>
-              Setup needed: add your DataForSEO API key to use OpenSEO features.
+              Setup needed: add your DataForSEO API key to use Sutra Search features.
               See the quick steps on the {helpLink}.
             </>
           )}
@@ -125,7 +125,7 @@ function MissingSeoSetupModal({ onClose }: { onClose: () => void }) {
                   setup guide has the steps.
                 </>
               ) : (
-                "Add your DataForSEO API key to start using OpenSEO."
+                "Add your DataForSEO API key to start using Sutra Search."
               )}
             </DialogDescription>
           </div>
