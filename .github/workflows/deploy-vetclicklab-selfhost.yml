@@ -83,4 +83,5 @@ jobs:
             https://open-seo-selfhost.vetclicklab.workers.dev/api/health
 
       - name: Deployment URL
-        run: echo "OpenSEO URL: https://open-seo-selfhost.vetclicklab.workers.dev"
+        run: |
+          echo "OpenSEO URL: https://open-seo-selfhost.vetclicklab.workers.dev"
