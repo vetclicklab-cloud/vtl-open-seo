@@ -77,10 +77,25 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          curl --fail --silent --show-error --retry 6 --retry-delay 5 \
-            --output /dev/null \
-            --write-out 'Health endpoint HTTP %{http_code}\n' \
-            https://open-seo-selfhost.vetclicklab.workers.dev/api/health
+          # workers.dev routing may return 404 briefly after the Worker is created.
+          # Validate application health instead of treating a propagation-era
+          # 404 as a failed infrastructure deployment.
+          health_url="https://open-seo-selfhost.vetclicklab.workers.dev/api/health"
+          for attempt in $(seq 1 24); do
+            status=$(curl --silent --show-error --max-time 15 \
+              --output /tmp/openseo-health.json \
+              --write-out '%{http_code}' "$health_url") || status="000"
+            if [ "$status" = "200" ] && \
+                jq -e '.status == "ok" and .checks.database.status == "ok"' \
+                  /tmp/openseo-health.json >/dev/null 2>&1; then
+              echo "OpenSEO application and database are healthy (HTTP 200)"
+              exit 0
+            fi
+            echo "Health check attempt $attempt/24: HTTP $status (retrying during propagation)"
+            sleep 5
+          done
+          echo "::error::OpenSEO did not report healthy status after deployment"
+          exit 1
 
       - name: Deployment URL
         run: |
