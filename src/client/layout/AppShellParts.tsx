@@ -43,8 +43,8 @@ function SeoApiStatusBanners({
             </>
           ) : (
             <>
-              Setup needed: add your DataForSEO API key to use Sutra Search features.
-              See the quick steps on the {helpLink}.
+              Setup needed: add your DataForSEO API key to use Sutra Search
+              features. See the quick steps on the {helpLink}.
             </>
           )}
         </AppBanner>

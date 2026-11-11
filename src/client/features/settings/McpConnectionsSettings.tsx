@@ -50,7 +50,9 @@ export function McpConnectionsSettings() {
   return (
     <section className="space-y-3">
       <SectionHeader title="Connected agents" />
-      <p className="text-sm">AI clients signed in to Sutra Search with OAuth.</p>
+      <p className="text-sm">
+        AI clients signed in to Sutra Search with OAuth.
+      </p>
 
       <QueryState
         query={connectionsQuery}
