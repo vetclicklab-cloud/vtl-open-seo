@@ -61,7 +61,20 @@ export const Route = createRootRoute({
       { rel: "stylesheet", href: appCss },
       {
         rel: "apple-touch-icon",
-        href: "/sutra-app-icon.svg",
+        sizes: "180x180",
+        href: "/sutra-apple-touch-icon.png",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "/sutra-favicon-32.png",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        href: "/sutra-favicon-16.png",
       },
       { rel: "icon", type: "image/svg+xml", href: "/sutra-app-icon.svg" },
       { rel: "manifest", href: "/site.webmanifest" },

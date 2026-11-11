@@ -144,7 +144,11 @@ function MobileTopBar() {
   return (
     <div className="flex shrink-0 items-center gap-1 border-b border-border bg-card px-2 py-1.5 md:hidden">
       <SidebarTrigger aria-label="Toggle sidebar" />
-      <Link to="/" aria-label="Sutra Search OS home" className="ml-1 text-foreground">
+      <Link
+        to="/"
+        aria-label="Sutra Search OS home"
+        className="ml-1 text-foreground"
+      >
         <SutraBrand compact />
       </Link>
     </div>

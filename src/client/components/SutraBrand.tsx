@@ -7,6 +7,9 @@ export function SutraBrand({
   compact?: boolean;
 }) {
   const sidebar = context === "sidebar";
+  const labelColor = sidebar ? "text-sidebar-primary" : "text-primary";
+  const textColor = sidebar ? "text-sidebar-foreground" : "text-foreground";
+
   return (
     <span className="inline-flex items-center gap-2.5">
       <img
@@ -16,11 +19,13 @@ export function SutraBrand({
         className="size-7 shrink-0"
       />
       <span className="flex flex-col leading-none">
-        <span className={sidebar ? "text-lg font-bold tracking-tight text-sidebar-foreground" : "text-lg font-bold tracking-tight text-foreground"}>
-          sutra<span className={sidebar ? "text-sidebar-primary" : "text-primary"}>.</span>
+        <span className={`text-lg font-bold tracking-tight ${textColor}`}>
+          sutra<span className={labelColor}>.</span>
         </span>
         {!compact ? (
-          <span className={sidebar ? "mt-1 text-[9px] font-semibold tracking-[0.19em] text-sidebar-primary" : "mt-1 text-[9px] font-semibold tracking-[0.19em] text-primary"}>
+          <span
+            className={`mt-1 text-[9px] font-semibold tracking-[0.19em] ${labelColor}`}
+          >
             SEARCH OS
           </span>
         ) : null}

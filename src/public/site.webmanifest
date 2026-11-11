@@ -3,6 +3,18 @@
   "short_name": "Sutra Search",
   "icons": [
     {
+      "src": "/sutra-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/sutra-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
       "src": "/sutra-app-icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",

@@ -364,6 +364,7 @@ html[data-theme="openseo-dark"] {
   --sutra-border: #dee7ee;
   --sutra-ai-violet: #6d61d8;
 }
+
 :root:not([data-theme="openseo-dark"]),
 [data-theme="openseo"] {
   color-scheme: light;
@@ -405,6 +406,7 @@ html[data-theme="openseo-dark"] {
   --sidebar-border: #344559;
   --sidebar-ring: #2dd4bf;
 }
+
 [data-theme="openseo-dark"] {
   color-scheme: dark;
   --background: #0d1927;
