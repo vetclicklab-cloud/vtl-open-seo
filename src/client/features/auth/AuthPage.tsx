@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { Button } from "@/client/components/ui/button";
+import { SutraBrand } from "@/client/components/SutraBrand";
 import {
   getCurrentAuthRedirect,
   getOAuthSignedQuery,
@@ -146,11 +147,9 @@ export function AuthPageCard({
   return (
     <div className="w-full max-w-xs space-y-6">
       <div className="space-y-3 text-center">
-        <img
-          src="/transparent-logo.png"
-          alt="OpenSEO"
-          className="mx-auto size-10 rounded-lg"
-        />
+        <div className="flex justify-center">
+          <SutraBrand />
+        </div>
         <div>
           <h1 className="text-xl font-semibold">{title}</h1>
           {helperText ? (

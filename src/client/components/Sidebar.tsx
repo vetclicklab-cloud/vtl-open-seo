@@ -27,6 +27,7 @@ import {
   SamSidebarPanel,
 } from "@/client/features/sam/SamSidebarPanel";
 import { ThemePreferenceRadio } from "@/client/components/ThemePreferenceMenuItems";
+import { SutraBrand } from "@/client/components/SutraBrand";
 import { getStandardErrorMessage } from "@/client/lib/error-messages";
 import { signOutAndRedirect, useSession } from "@/lib/auth-client";
 import {
@@ -153,9 +154,10 @@ export function Sidebar({
         <Link
           to="/"
           onClick={() => setOpenMobile(false)}
-          className="px-1 pb-2 text-base font-semibold text-sidebar-foreground"
+          aria-label="Sutra Search OS home"
+          className="px-1 pb-2 text-sidebar-foreground"
         >
-          OpenSEO
+          <SutraBrand context="sidebar" />
         </Link>
         <ProjectSwitcher
           activeProjectId={projectId}

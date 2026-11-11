@@ -9,6 +9,7 @@ import {
 } from "@/client/layout/AppShellParts";
 import { GscReEngagementModal } from "@/client/features/gsc/GscReEngagementModal";
 import { Sidebar } from "@/client/components/Sidebar";
+import { SutraBrand } from "@/client/components/SutraBrand";
 import { BILLING_ROUTE } from "@/shared/billing";
 import { getSeoApiKeyStatus } from "@/serverFunctions/config";
 import { getLastProjectId } from "@/client/lib/active-project";
@@ -143,8 +144,12 @@ function MobileTopBar() {
   return (
     <div className="flex shrink-0 items-center gap-1 border-b border-border bg-card px-2 py-1.5 md:hidden">
       <SidebarTrigger aria-label="Toggle sidebar" />
-      <Link to="/" className="ml-1 font-semibold text-foreground">
-        OpenSEO
+      <Link
+        to="/"
+        aria-label="Sutra Search OS home"
+        className="ml-1 text-foreground"
+      >
+        <SutraBrand compact />
       </Link>
     </div>
   );
