@@ -16,23 +16,23 @@ The "search bar" in the screenshot is actually the **project switcher**; its lab
 
 Ratios calculated from defined source CSS colors, including alpha compositing on the indicated background; rendered colors can vary by browser, environment and component context.
 
-| Context | Foreground / indicator | Background | Ratio | Threshold | Assessment |
-| --- | --- | --- | ---: | ---: | --- |
-| Main body copy | `#182C3D` | `#F7F9FC` | 13.58:1 | 4.5 | Pass |
-| Light secondary copy | `#4D6374` | `#F7F9FC` | 5.94:1 | 4.5 | Pass |
-| Primary button text | `#FFFFFF` | `#0E7C86` | 4.95:1 | 4.5 | Pass |
-| Brand accent on navy | `#2DD4BF` | `#101F33` | 8.91:1 | 4.5 | Pass |
-| Sidebar ordinary nav text (70% alpha) | computed `#A7B3BB` | `#101F33` | 7.75:1 | 4.5 | Pass |
-| Dark secondary copy | `#B7C8D2` | `#15283A` | 8.74:1 | 4.5 | Pass |
-| **Project switcher label / gear** | `#E8F2F5` inherited | `#FFFFFF` | **1.14:1** | 4.5 / 3 | **Fail** |
-| **Sidebar group labels** | computed `#667381` (40% alpha) | `#101F33` | **3.42:1** | 4.5 | **Fail** |
-| **Inactive light-theme tabs** | computed `#74808B` (60% alpha) | `#FFFFFF` | **4.04:1** | 4.5 | **Fail** |
-| **Input / unchecked control border (light)** | `#B7C8D2` | `#FFFFFF` | **1.72:1** | 3 | **Fail when necessary for control identity** |
-| **Input / unchecked control border (dark)** | `#416078` | `#15283A` | **2.27:1** | 3 | **Fail when necessary for control identity** |
-| **Active sidebar indicator** | `#0E7C86` | `#254357` | **2.10:1** | 3 | **Fail when indicator is necessary for state** |
-| Light theme outer focus ring (50% opacity) | computed `#86BEC2` | `#FFFFFF` | **2.07:1** | See focus analysis | Weak; check whole focus treatment |
-| Chart 4 / amber line | `#C27B36` | `#FFFFFF` | 3.40:1 | 3 graphic; 4.5 small text | Pass graphic; not small text |
-| Chart 5 / pink line | `#CC577C` | `#FFFFFF` | 4.02:1 | 3 graphic; 4.5 small text | Pass graphic; not small text |
+| Context                                      | Foreground / indicator         | Background | Ratio      | Threshold                 | Assessment                                     |
+| -------------------------------------------- | ------------------------------ | ---------- | ---------- | ------------------------- | ---------------------------------------------- |
+| Main body copy                               | `#182C3D`                      | `#F7F9FC`  | 13.58:1    | 4.5                       | Pass                                           |
+| Light secondary copy                         | `#4D6374`                      | `#F7F9FC`  | 5.94:1     | 4.5                       | Pass                                           |
+| Primary button text                          | `#FFFFFF`                      | `#0E7C86`  | 4.95:1     | 4.5                       | Pass                                           |
+| Brand accent on navy                         | `#2DD4BF`                      | `#101F33`  | 8.91:1     | 4.5                       | Pass                                           |
+| Sidebar ordinary nav text (70% alpha)        | computed `#A7B3BB`             | `#101F33`  | 7.75:1     | 4.5                       | Pass                                           |
+| Dark secondary copy                          | `#B7C8D2`                      | `#15283A`  | 8.74:1     | 4.5                       | Pass                                           |
+| **Project switcher label / gear**            | `#E8F2F5` inherited            | `#FFFFFF`  | **1.14:1** | 4.5 / 3                   | **Fail**                                       |
+| **Sidebar group labels**                     | computed `#667381` (40% alpha) | `#101F33`  | **3.42:1** | 4.5                       | **Fail**                                       |
+| **Inactive light-theme tabs**                | computed `#74808B` (60% alpha) | `#FFFFFF`  | **4.04:1** | 4.5                       | **Fail**                                       |
+| **Input / unchecked control border (light)** | `#B7C8D2`                      | `#FFFFFF`  | **1.72:1** | 3                         | **Fail when necessary for control identity**   |
+| **Input / unchecked control border (dark)**  | `#416078`                      | `#15283A`  | **2.27:1** | 3                         | **Fail when necessary for control identity**   |
+| **Active sidebar indicator**                 | `#0E7C86`                      | `#254357`  | **2.10:1** | 3                         | **Fail when indicator is necessary for state** |
+| Light theme outer focus ring (50% opacity)   | computed `#86BEC2`             | `#FFFFFF`  | **2.07:1** | See focus analysis        | Weak; check whole focus treatment              |
+| Chart 4 / amber line                         | `#C27B36`                      | `#FFFFFF`  | 3.40:1     | 3 graphic; 4.5 small text | Pass graphic; not small text                   |
+| Chart 5 / pink line                          | `#CC577C`                      | `#FFFFFF`  | 4.02:1     | 3 graphic; 4.5 small text | Pass graphic; not small text                   |
 
 Note: decorative separators, inactive controls and logos have different contrast exceptions. Do **not** apply the 3:1 threshold indiscriminately to all card borders, hover tints, illustrations or decorations.
 
