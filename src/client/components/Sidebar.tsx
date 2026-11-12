@@ -61,7 +61,7 @@ import {
 } from "@/client/components/ui/dropdown-menu";
 
 const navButtonClass =
-  "relative text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground data-active:before:absolute data-active:before:inset-y-1 data-active:before:left-0 data-active:before:w-[3px] data-active:before:rounded-r-full data-active:before:bg-primary";
+  "relative text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground data-active:before:absolute data-active:before:inset-y-1 data-active:before:left-0 data-active:before:w-[3px] data-active:before:rounded-r-full data-active:before:bg-sidebar-primary";
 
 function SidebarNavLink({
   icon: Icon,
@@ -185,7 +185,7 @@ export function Sidebar({
           >
             {navGroups.map((group) => (
               <SidebarGroup key={group.label} className="py-1">
-                <SidebarGroupLabel className="h-7 uppercase tracking-wider text-sidebar-foreground/40">
+                <SidebarGroupLabel className="h-7 uppercase tracking-wider text-sidebar-foreground/55">
                   {group.label}
                 </SidebarGroupLabel>
                 <SidebarGroupContent>
