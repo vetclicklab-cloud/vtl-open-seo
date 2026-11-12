@@ -12,31 +12,31 @@ function themeVars(selector: string) {
 
 function color(block: string, token: string) {
   const value = block.match(
-    new RegExp(`--${token}:\\s*(#[\\da-f]{6});`, "i"),
+    new RegExp(`--${token}:\\s*(#[0-9a-f]{6});`, "i"),
   )?.[1];
   if (!value) throw new Error(`Missing color token: ${token}`);
   return value;
 }
 
 function luminance(hex: string) {
-  const channels = [1, 3, 5].map((offset) => {
+  const weights = [0.2126, 0.7152, 0.0722];
+  return [1, 3, 5].reduce((sum, offset, index) => {
     const channel = Number.parseInt(hex.slice(offset, offset + 2), 16) / 255;
-    return channel <= 0.04045
-      ? channel / 12.92
-      : ((channel + 0.055) / 1.055) ** 2.4;
-  });
-  return (
-    channels[0] * 0.2126 +
-    channels[1] * 0.7152 +
-    channels[2] * 0.0722
-  );
+    const linear =
+      channel <= 0.04045
+        ? channel / 12.92
+        : ((channel + 0.055) / 1.055) ** 2.4;
+    return sum + linear * (weights[index] ?? 0);
+  }, 0);
 }
 
 function contrast(first: string, second: string) {
-  const [lighter, darker] = [luminance(first), luminance(second)].sort(
-    (a, b) => b - a,
+  const firstLuminance = luminance(first);
+  const secondLuminance = luminance(second);
+  return (
+    (Math.max(firstLuminance, secondLuminance) + 0.05) /
+    (Math.min(firstLuminance, secondLuminance) + 0.05)
   );
-  return (lighter + 0.05) / (darker + 0.05);
 }
 
 function composite(foreground: string, background: string, alpha: number) {
@@ -49,32 +49,47 @@ function composite(foreground: string, background: string, alpha: number) {
 }
 
 const light = themeVars(':root:not([data-theme="openseo-dark"])');
-const dark = themeVars('[data-theme="openseo-dark"]');
+const dark = themeVars('\n[data-theme="openseo-dark"] {');
+
+function expectContrast(
+  theme: string,
+  foreground: string,
+  background: string,
+  minimum: number,
+) {
+  expect(
+    contrast(color(theme, foreground), color(theme, background)),
+  ).toBeGreaterThanOrEqual(minimum);
+}
 
 describe("Sutra Search WCAG AA brand color regression", () => {
   it("keeps normal text readable on content surfaces", () => {
     for (const theme of [light, dark]) {
-      expect(contrast(color(theme, "foreground"), color(theme, "background"))).toBeGreaterThanOrEqual(4.5);
-      expect(contrast(color(theme, "card-foreground"), color(theme, "card"))).toBeGreaterThanOrEqual(4.5);
-      expect(contrast(color(theme, "muted-foreground"), color(theme, "card"))).toBeGreaterThanOrEqual(4.5);
-      expect(contrast(color(theme, "primary-foreground"), color(theme, "primary"))).toBeGreaterThanOrEqual(4.5);
+      expectContrast(theme, "foreground", "background", 4.5);
+      expectContrast(theme, "card-foreground", "card", 4.5);
+      expectContrast(theme, "muted-foreground", "card", 4.5);
+      expectContrast(theme, "primary-foreground", "primary", 4.5);
     }
   });
 
   it("maintains visible outlines for form controls in either theme", () => {
     for (const theme of [light, dark]) {
-      expect(contrast(color(theme, "input"), color(theme, "card"))).toBeGreaterThanOrEqual(3);
-      expect(contrast(color(theme, "input"), color(theme, "background"))).toBeGreaterThanOrEqual(3);
-      expect(contrast(color(theme, "ring"), color(theme, "card"))).toBeGreaterThanOrEqual(3);
+      expectContrast(theme, "input", "card", 3);
+      expectContrast(theme, "input", "background", 3);
+      expectContrast(theme, "ring", "card", 3);
     }
   });
 
   it("reserves high-contrast colors for sidebar navigation", () => {
     for (const theme of [light, dark]) {
       const base = color(theme, "sidebar");
-      const heading = composite(color(theme, "sidebar-foreground"), base, 0.55);
+      const heading = composite(
+        color(theme, "sidebar-foreground"),
+        base,
+        0.55,
+      );
       expect(contrast(heading, base)).toBeGreaterThanOrEqual(4.5);
-      expect(contrast(color(theme, "sidebar-primary"), color(theme, "sidebar-accent"))).toBeGreaterThanOrEqual(3);
+      expectContrast(theme, "sidebar-primary", "sidebar-accent", 3);
     }
   });
 
