@@ -23,9 +23,7 @@ function luminance(hex: string) {
   return [1, 3, 5].reduce((sum, offset, index) => {
     const channel = Number.parseInt(hex.slice(offset, offset + 2), 16) / 255;
     const linear =
-      channel <= 0.04045
-        ? channel / 12.92
-        : ((channel + 0.055) / 1.055) ** 2.4;
+      channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
     return sum + linear * (weights[index] ?? 0);
   }, 0);
 }
@@ -83,11 +81,7 @@ describe("Sutra Search WCAG AA brand color regression", () => {
   it("reserves high-contrast colors for sidebar navigation", () => {
     for (const theme of [light, dark]) {
       const base = color(theme, "sidebar");
-      const heading = composite(
-        color(theme, "sidebar-foreground"),
-        base,
-        0.55,
-      );
+      const heading = composite(color(theme, "sidebar-foreground"), base, 0.55);
       expect(contrast(heading, base)).toBeGreaterThanOrEqual(4.5);
       expectContrast(theme, "sidebar-primary", "sidebar-accent", 3);
     }
@@ -107,9 +101,9 @@ describe("Sutra Search WCAG AA brand color regression", () => {
       "utf8",
     );
 
-    expect(
-      projectSwitcher.match(/bg-card text-card-foreground/g),
-    ).toHaveLength(2);
+    expect(projectSwitcher.match(/bg-card text-card-foreground/g)).toHaveLength(
+      2,
+    );
     expect(sidebar).toContain("text-sidebar-foreground/55");
     expect(sidebar).toContain("data-active:before:bg-sidebar-primary");
     expect(tabs).toContain("text-muted-foreground transition-all");
