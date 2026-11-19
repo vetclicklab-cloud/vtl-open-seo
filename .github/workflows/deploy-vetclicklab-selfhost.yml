@@ -60,10 +60,24 @@ jobs:
 
       - name: Prepare self-host configuration (never commit secrets)
         shell: bash
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
         run: |
           set -euo pipefail
+          # Alchemy reconciles both values on every deploy. Require them so
+          # a missing Actions secret cannot disable an existing connection.
+          for name in GOOGLE_CLIENT_ID GOOGLE_CLIENT_SECRET; do
+            value="${!name}"
+            if [[ -z "$value" || "$value" == *$'\n'* || "$value" == *$'\r'* ]]; then
+              echo "::error::Set $name in GitHub Actions secrets to its single-line Google OAuth value"
+              exit 1
+            fi
+          done
           umask 077
           printf 'DATAFORSEO_API_KEY=%s\nAUTH_MODE=password\nWORKERS_SUBDOMAIN=vetclicklab.workers.dev\nOPENSEO_TELEMETRY_DISABLED=1\n' "$DATAFORSEO_API_KEY" > .env.selfhost
+          printf 'GOOGLE_CLIENT_ID=%s\nGOOGLE_CLIENT_SECRET=%s\n' \
+            "$GOOGLE_CLIENT_ID" "$GOOGLE_CLIENT_SECRET" >> .env.selfhost
           chmod 600 .env.selfhost
 
       - name: Bootstrap Alchemy state store (first run only)
@@ -86,15 +100,15 @@ jobs:
               --output /tmp/openseo-health.json \
               --write-out '%{http_code}' "$health_url") || status="000"
             if [ "$status" = "200" ] && \
-                jq -e '.status == "ok" and .checks.database.status == "ok"' \
+                jq -e '.status == "ok" and .checks.database.status == "ok" and .checks.gsc.detail == "Configured"' \
                   /tmp/openseo-health.json >/dev/null 2>&1; then
-              echo "OpenSEO application and database are healthy (HTTP 200)"
+              echo "Sutra application and database are healthy and Google OAuth is configured (HTTP 200)"
               exit 0
             fi
             echo "Health check attempt $attempt/24: HTTP $status (retrying during propagation)"
             sleep 5
           done
-          echo "::error::OpenSEO did not report healthy status after deployment"
+          echo "::error::Sutra did not report application health and Google OAuth configuration after deployment"
           exit 1
 
       - name: Deployment URL
